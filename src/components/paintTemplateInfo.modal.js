@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { addTemplate, updateTemplate } from '../actions/paintTemplateActions';
 
-Modal.setAppElement('#root')
-
 class PaintTemplateInfo extends Component {
 
     constructor(props) {

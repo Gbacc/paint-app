@@ -7,7 +7,6 @@ class PaintTemplateListItem extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props)
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
     }

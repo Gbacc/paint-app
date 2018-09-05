@@ -4,12 +4,15 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware  } from "redux";
 import registerServiceWorker from './registerServiceWorker';
+import Modal from 'react-modal';
 
 import 'spectre.css/dist/spectre.css';
 import 'spectre.css/dist/spectre-icons.css';
 
 import PaintTemplateList from './containers/paintTemplateList';
 import allReducers from './reducers/';
+
+Modal.setAppElement('#root')
 
 const store = createStore(
     allReducers,

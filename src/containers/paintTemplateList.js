@@ -5,7 +5,7 @@ import { listTemplate, removeTemplate } from '../actions/paintTemplateActions';
 import PaintTemplateInfo from '../components/paintTemplateInfo.modal';
 import PaintTemplateListItem from '../components/paintTemplateListItem';
 
-class PaintTemplateList extends Component {
+export class PaintTemplateList extends Component {
 
     constructor(props) {
         super(props);
