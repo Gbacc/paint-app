@@ -1,32 +1,26 @@
+import { getTemplateList } from '../models/template';
+
 export const LIST_TEMPLATE_SUCCESS = 'LIST_TEMPLATE_SUCCESS';
 export const LIST_TEMPLATE_ERROR = 'LIST_TEMPLATE_ERROR';
 export const ADD_TEMPLATE = 'ADD_TEMPLATE';
 export const UPDATE_TEMPLATE = 'UPDATE_TEMPLATE';
 export const REMOVE_TEMPLATE = 'REMOVE_TEMPLATE';
 
-const listTemplateSuccess = (templateList) => {
-    return {
-        type: LIST_TEMPLATE_SUCCESS,
-        payload: templateList
-    }
-}
-
-const listTemplateError = (error) => {
-    return {
-        type: LIST_TEMPLATE_ERROR,
-        payload: error
-    }
-}
-
 export const listTemplate = () => {
     return dispatch => {
-        return fetch('template.json')
-            .then(response => response.json())
+        return getTemplateList()
             .then(json => {
-                dispatch(listTemplateSuccess(json));
+                dispatch({
+                    type: LIST_TEMPLATE_SUCCESS,
+                    payload: json
+                });
                 return json;
             }).catch(error => {
-                dispatch(listTemplateError(error));
+                dispatch({
+                    type: LIST_TEMPLATE_ERROR,
+                    payload: error
+                });
+                return error;
             });
     }
 }
