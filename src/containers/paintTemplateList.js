@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { listTemplate, removeTemplate } from '../actions/paintTemplateActions';
+import { listTemplate, removeTemplate, addTemplate, updateTemplate } from '../actions/paintTemplateActions';
 import PaintTemplateInfo from '../components/paintTemplateInfo.modal';
 import PaintTemplateListItem from '../components/paintTemplateListItem';
 
@@ -22,6 +22,7 @@ export class PaintTemplateList extends Component {
         this.handleAdd = this.handleAdd.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleDelete(templateItem) {
@@ -33,12 +34,14 @@ export class PaintTemplateList extends Component {
         })
         this.props.removeTemplate(templateItem);
     }
+
     handleEdit(templateItem) {
         this.setState({
             currentTemplate: templateItem,
             modalIsOpen: true
         })
     }
+
     handleAdd() {
         this.setState({
             currentTemplate: {
@@ -52,6 +55,15 @@ export class PaintTemplateList extends Component {
         this.setState({
             modalIsOpen: false
         });
+    }
+
+    handleSubmit(template) {
+        if (template.id) {
+            this.props.updateTemplate(template);
+        } else {
+            this.props.addTemplate(template);
+        }
+        this.handleClose();
     }
 
     render() {
@@ -72,7 +84,7 @@ export class PaintTemplateList extends Component {
                     <button className="btn btn-primary btn-block tooltip" data-tooltip="Add new template" onClick={this.handleAdd}>New</button>
                 </div>
             </div>
-            <PaintTemplateInfo currentTemplate={this.state.currentTemplate} isOpen={this.state.modalIsOpen} handleClose={this.handleClose} />
+            <PaintTemplateInfo currentTemplate={this.state.currentTemplate} isOpen={this.state.modalIsOpen} handleClose={this.handleClose} handleSubmit={this.handleSubmit} />
         </div>;
     }
 }
@@ -81,7 +93,7 @@ function mapStateToProps(state) {
     return { paintTemplates: state.paintTemplates };
 }
 function matchDispatchToProps(dispatch) {
-    return bindActionCreators({ removeTemplate, listTemplate }, dispatch);
+    return bindActionCreators({ removeTemplate, listTemplate, updateTemplate, addTemplate }, dispatch);
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(PaintTemplateList);

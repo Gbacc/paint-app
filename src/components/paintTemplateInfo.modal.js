@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
-import { addTemplate, updateTemplate } from '../actions/paintTemplateActions';
 
 class PaintTemplateInfo extends Component {
 
@@ -35,13 +32,8 @@ class PaintTemplateInfo extends Component {
     }
 
     handleSubmit(event) {
-        if (this.state.currentTemplate.id) {
-            this.props.updateTemplate(this.state.currentTemplate);
-        } else {
-            this.props.addTemplate(this.state.currentTemplate);
-        }
-        this.props.handleClose();
         event.preventDefault();
+        this.props.handleSubmit(this.state.currentTemplate);
     }
 
     render() {
@@ -73,14 +65,8 @@ class PaintTemplateInfo extends Component {
 PaintTemplateInfo.propTypes = {
     currentTemplate: PropTypes.object,
     isOpen: PropTypes.bool,
-    handleClose: PropTypes.func
+    handleClose: PropTypes.func,
+    handleSubmit: PropTypes.func
 };
 
-function mapStateToProps(state) {
-    return {};
-}
-function matchDispatchToProps(dispatch) {
-    return bindActionCreators({ addTemplate, updateTemplate }, dispatch);
-}
-
-export default connect(mapStateToProps, matchDispatchToProps)(PaintTemplateInfo);
+export default PaintTemplateInfo;
