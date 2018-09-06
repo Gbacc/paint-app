@@ -23,6 +23,11 @@ export class PaintTemplateList extends Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
+    }
+
+    handleSelect(templateId) {
+        this.props.history.push('/template/' + templateId);
     }
 
     handleDelete(templateItem) {
@@ -68,24 +73,26 @@ export class PaintTemplateList extends Component {
 
     render() {
         const paintTemplatesList = this.props.paintTemplates.map((templateItem, index) => {
-            return <PaintTemplateListItem key={index} currentTemplate={templateItem} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
+            return <PaintTemplateListItem key={index} currentTemplate={templateItem} handleEdit={this.handleEdit} handleDelete={this.handleDelete} handleSelect={this.handleSelect} />
         });
-        return <div className="container grid-sm">
-            <div className="panel">
-                <div className="panel-header text-center">
-                    <figure className="avatar avatar-lg"><span className="icon icon-bookmark mt-2"></span></figure>
-                    <div className="panel-title h5 mt-2">Paint templates</div>
-                    <div className="panel-subtitle">{this.props.paintTemplates.length} templates</div>
+        return (
+            <div className="container grid-sm">
+                <div className="panel">
+                    <div className="panel-header text-center">
+                        <figure className="avatar avatar-lg"><span className="icon icon-bookmark mt-2"></span></figure>
+                        <div className="panel-title h5 mt-2">Paint templates</div>
+                        <div className="panel-subtitle">{this.props.paintTemplates.length} templates</div>
+                    </div>
+                    <div className="panel-body">
+                        {paintTemplatesList}
+                    </div>
+                    <div className="panel-footer">
+                        <button className="btn btn-primary btn-block tooltip" data-tooltip="Add new template" onClick={this.handleAdd}>New</button>
+                    </div>
                 </div>
-                <div className="panel-body">
-                    {paintTemplatesList}
-                </div>
-                <div className="panel-footer">
-                    <button className="btn btn-primary btn-block tooltip" data-tooltip="Add new template" onClick={this.handleAdd}>New</button>
-                </div>
+                <PaintTemplateInfo currentTemplate={this.state.currentTemplate} isOpen={this.state.modalIsOpen} handleClose={this.handleClose} handleSubmit={this.handleSubmit} />
             </div>
-            <PaintTemplateInfo currentTemplate={this.state.currentTemplate} isOpen={this.state.modalIsOpen} handleClose={this.handleClose} handleSubmit={this.handleSubmit} />
-        </div>;
+        );
     }
 }
 

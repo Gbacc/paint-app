@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PaintTemplateListItem = ({ currentTemplate, handleEdit, handleDelete }) => {
+const PaintTemplateListItem = ({ currentTemplate, handleEdit, handleDelete, handleSelect }) => {
     return (
         <div className="tile tile-centered">
             <div className="tile-icon">
@@ -9,7 +9,7 @@ const PaintTemplateListItem = ({ currentTemplate, handleEdit, handleDelete }) =>
                     <i className="icon icon-photo centered"></i>
                 </div>
             </div>
-            <div className="tile-content">
+            <div className="tile-content" onClick={() => handleSelect(currentTemplate.id)}>
                 <div className="tile-title">{currentTemplate.label}</div>
                 <div className="tile-subtitle text-gray">{currentTemplate.type}</div>
             </div>

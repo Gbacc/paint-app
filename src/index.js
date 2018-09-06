@@ -9,7 +9,7 @@ import Modal from 'react-modal';
 import 'spectre.css/dist/spectre.css';
 import 'spectre.css/dist/spectre-icons.css';
 
-import PaintTemplateList from './containers/paintTemplateList';
+import App from './app';
 import allReducers from './reducers/';
 
 Modal.setAppElement('#root')
@@ -21,7 +21,7 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <PaintTemplateList />
+        <App />
     </Provider>,
     document.getElementById('root')
 );
