@@ -14,10 +14,10 @@ const PaintTemplateListItem = ({ currentTemplate, handleEdit, handleDelete }) =>
                 <div className="tile-subtitle text-gray">{currentTemplate.type}</div>
             </div>
             <div className="tile-action">
-                <button className="btn btn-link tooltip tooltip-left" data-tooltip="Edit template" onClick={() => { handleEdit(currentTemplate) }}>
+                <button id="editTemplate" className="btn btn-link tooltip tooltip-left" data-tooltip="Edit template" onClick={() => { handleEdit(currentTemplate) }}>
                     <i className="icon icon-edit"></i>
                 </button>
-                <button className="btn btn-link tooltip tooltip-left" data-tooltip="Delete template" onClick={() => { handleDelete(currentTemplate) }}>
+                <button id="deleteTemplate" className="btn btn-link tooltip tooltip-left" data-tooltip="Delete template" onClick={() => { handleDelete(currentTemplate) }}>
                     <i className="icon icon-delete"></i>
                 </button>
             </div>
