@@ -3,7 +3,7 @@ export const getTemplateById = (templateId) => {
         .then(response => response.json())
         .then(json => {
             const template = json.find((templateItem) => {
-                return templateItem.id == templateId;
+                return parseInt(templateItem.id, 10) === parseInt(templateId, 10);
             });
             return template;
         })

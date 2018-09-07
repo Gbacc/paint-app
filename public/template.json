@@ -1,5 +1,75 @@
 [
-    { "id": 1, "label": "Blood Angel", "type": "miniature" },
-    { "id": 2, "label": "Rubricae", "type": "miniature" },
-    { "id": 3, "label": "Chaos bases", "type": "base" }
+    {
+        "id": 1,
+        "label": "Blood Angel",
+        "type": "miniature",
+        "components": [
+            {
+                "id": 1,
+                "label": "Base armor",
+                "colors": [
+                    {
+                        "id": 21,
+                        "label": "Mephiston Red",
+                        "type": "Base",
+                        "color": "#9A1115"
+                    },
+                    {
+                        "id": 118,
+                        "label": "Carroburg Crimson",
+                        "type": "Shade",
+                        "color": "#A82A70"
+                    },
+                    {
+                        "id": 108,
+                        "label": "Wazdakka Red",
+                        "type": "Layer",
+                        "color": "#8C0A0C"
+                    },
+                    {
+                        "id": 110,
+                        "label": "Wild Rider Red",
+                        "type": "Layer",
+                        "color": "#EA2F28"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "label": "Metals",
+                "colors": [
+                    {
+                        "id": 18,
+                        "label": "Leadbelcher (Metal)",
+                        "type": "Base",
+                        "color": "#888D8F"
+                    },
+                    {
+                        "id": 124,
+                        "label": "Nuln Oil",
+                        "type": "Shade",
+                        "color": "#14100E"
+                    },
+                    {
+                        "id": 79,
+                        "label": "Runefang Steel (Metal)",
+                        "type": "Layer",
+                        "color": "#C3CACE"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "label": "Rubricae",
+        "type": "miniature",
+        "components": []
+    },
+    {
+        "id": 3,
+        "label": "Chaos bases",
+        "type": "base",
+        "components": []
+    }
 ]
