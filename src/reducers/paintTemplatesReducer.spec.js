@@ -27,11 +27,11 @@ describe('paintTemplatesReducer test suit', () => {
             { "id": 1, "label": "Blood Angel", "type": "miniature" },
             { "id": 2, "label": "Test", "type": "miniature" }
         ];
-        const removeTemplate = { "id": 2, "label": "Test", "type": "miniature" };
+        const removeTemplateId = 2;
         const paintTemplatesAfterReduce = [
             { "id": 1, "label": "Blood Angel", "type": "miniature" }
         ];
-        expect(paintTemplatesReducer(paintTemplatesBeforeReduce, { type: REMOVE_TEMPLATE, payload: removeTemplate })).toEqual(paintTemplatesAfterReduce);
+        expect(paintTemplatesReducer(paintTemplatesBeforeReduce, { type: REMOVE_TEMPLATE, payload: removeTemplateId })).toEqual(paintTemplatesAfterReduce);
     });
 
     it('updates a template', () => {

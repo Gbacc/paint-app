@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PaintTemplateListItem = ({ currentTemplate, handleEdit, handleDelete, handleSelect }) => {
+const PaintTemplateListItem = ({ currentTemplate, handleEdit, askForDelete, handleSelect }) => {
     return (
         <div className="tile tile-centered">
             <div className="tile-icon">
@@ -9,7 +9,7 @@ const PaintTemplateListItem = ({ currentTemplate, handleEdit, handleDelete, hand
                     <i className="icon icon-photo centered"></i>
                 </div>
             </div>
-            <div className="tile-content" onClick={() => handleSelect(currentTemplate.id)}>
+            <div id="selectTemplate" className="tile-content" onClick={() => handleSelect(currentTemplate)}>
                 <div className="tile-title">{currentTemplate.label}</div>
                 <div className="tile-subtitle text-gray">{currentTemplate.type}</div>
             </div>
@@ -17,7 +17,7 @@ const PaintTemplateListItem = ({ currentTemplate, handleEdit, handleDelete, hand
                 <button id="editTemplate" className="btn btn-link tooltip tooltip-left" data-tooltip="Edit template" onClick={() => { handleEdit(currentTemplate) }}>
                     <i className="icon icon-edit"></i>
                 </button>
-                <button id="deleteTemplate" className="btn btn-link tooltip tooltip-left" data-tooltip="Delete template" onClick={() => { handleDelete(currentTemplate) }}>
+                <button id="deleteTemplate" className="btn btn-link tooltip tooltip-left" data-tooltip="Delete template" onClick={() => { askForDelete(currentTemplate) }}>
                     <i className="icon icon-delete"></i>
                 </button>
             </div>

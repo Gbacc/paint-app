@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { listTemplate, removeTemplate, addTemplate, updateTemplate } from '../actions/paintTemplateActions';
-import PaintTemplateInfo from '../components/paintTemplateInfo.modal';
+import PaintTemplateDelete from '../components/paintTemplateDelete.modal';
 import PaintTemplateListItem from '../components/paintTemplateListItem';
 
 export class PaintTemplateList extends Component {
@@ -20,60 +20,49 @@ export class PaintTemplateList extends Component {
 
         this.handleEdit = this.handleEdit.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
+        this.askForDelete = this.askForDelete.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
     }
 
-    handleSelect(templateId) {
-        this.props.history.push('/template/' + templateId);
+    handleSelect(template) {
+        this.props.history.push('/template/' + template.id+ '/show');
     }
 
-    handleDelete(templateItem) {
-        this.setState({
-            currentTemplate: {
-                label: ''
-            },
-            modalIsOpen: false
-        })
-        this.props.removeTemplate(templateItem);
-    }
-
-    handleEdit(templateItem) {
-        this.setState({
-            currentTemplate: templateItem,
-            modalIsOpen: true
-        })
+    handleEdit(template) {
+        this.props.history.push('/template/' + template.id + '/edit');
     }
 
     handleAdd() {
+        this.props.history.push('/template/add');
+    }
+
+    askForDelete(template) {
         this.setState({
-            currentTemplate: {
-                label: ''
-            },
+            currentTemplate: template,
             modalIsOpen: true
         })
+    }
+
+    handleDelete(template) {
+        this.setState({
+            currentTemplate: {},
+            modalIsOpen: false
+        })
+        this.props.removeTemplate(template.id);
     }
 
     handleClose() {
         this.setState({
+            currentTemplate: {},
             modalIsOpen: false
         });
     }
 
-    handleSubmit(template) {
-        if (template.id) {
-            this.props.updateTemplate(template);
-        } else {
-            this.props.addTemplate(template);
-        }
-        this.handleClose();
-    }
-
     render() {
         const paintTemplatesList = this.props.paintTemplates.map((templateItem, index) => {
-            return <PaintTemplateListItem key={index} currentTemplate={templateItem} handleEdit={this.handleEdit} handleDelete={this.handleDelete} handleSelect={this.handleSelect} />
+            return <PaintTemplateListItem key={index} currentTemplate={templateItem} handleEdit={this.handleEdit} askForDelete={this.askForDelete} handleSelect={this.handleSelect} />
         });
         return (
             <div className="container grid-sm">
@@ -90,7 +79,7 @@ export class PaintTemplateList extends Component {
                         <button className="btn btn-primary btn-block tooltip" data-tooltip="Add new template" onClick={this.handleAdd}>New</button>
                     </div>
                 </div>
-                <PaintTemplateInfo currentTemplate={this.state.currentTemplate} isOpen={this.state.modalIsOpen} handleClose={this.handleClose} handleSubmit={this.handleSubmit} />
+                <PaintTemplateDelete currentTemplate={this.state.currentTemplate} isOpen={this.state.modalIsOpen} handleClose={this.handleClose} handleDelete={this.handleDelete} />
             </div>
         );
     }

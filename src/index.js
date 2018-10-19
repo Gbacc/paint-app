@@ -6,8 +6,7 @@ import { createStore, applyMiddleware  } from "redux";
 import registerServiceWorker from './registerServiceWorker';
 import Modal from 'react-modal';
 
-import 'spectre.css/dist/spectre.css';
-import 'spectre.css/dist/spectre-icons.css';
+import './index.scss';
 
 import App from './app';
 import allReducers from './reducers/';

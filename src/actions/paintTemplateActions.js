@@ -42,10 +42,10 @@ export const updateTemplate = (template) => {
     }
 }
 
-export const removeTemplate = (template) => {
+export const removeTemplate = (templateId) => {
     // DELETE
     return {
         type: REMOVE_TEMPLATE,
-        payload: template
+        payload: templateId
     }
 }

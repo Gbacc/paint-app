@@ -18,7 +18,8 @@ describe('PaintTemplateListItem test suit', () => {
                 type: 'miniature'
             },
             handleEdit: jest.fn(),
-            handleDelete: jest.fn()
+            handleSelect: jest.fn(),
+            askForDelete: jest.fn()
         }
 
         const wrapper = shallow(<PaintTemplateListItem {...props} />);
@@ -34,7 +35,8 @@ describe('PaintTemplateListItem test suit', () => {
                 type: 'miniature'
             },
             handleEdit: jest.fn(),
-            handleDelete: jest.fn()
+            handleSelect: jest.fn(),
+            askForDelete: jest.fn()
         }
 
         const wrapper = shallow(<PaintTemplateListItem {...props} />);
@@ -42,7 +44,10 @@ describe('PaintTemplateListItem test suit', () => {
         wrapper.find('#editTemplate').simulate('click');
         expect(props.handleEdit.mock.calls[0][0]).toEqual(props.currentTemplate);
 
+        wrapper.find('#selectTemplate').simulate('click');
+        expect(props.handleSelect.mock.calls[0][0]).toEqual(props.currentTemplate);
+
         wrapper.find('#deleteTemplate').simulate('click');
-        expect(props.handleEdit.mock.calls[0][0]).toEqual(props.currentTemplate);
+        expect(props.askForDelete.mock.calls[0][0]).toEqual(props.currentTemplate);
     });
 });

@@ -20,7 +20,7 @@ export default function (state = initialState, action) {
             return updatedItems;
         case REMOVE_TEMPLATE:
             const leftItems = state.filter(templateItem => {
-                if (templateItem.id !== action.payload.id) {
+                if (templateItem.id !== action.payload) {
                     return templateItem;
                 }
                 return null;

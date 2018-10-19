@@ -8,7 +8,8 @@ const App = () => {
         <Router>
             <div>
                 <Route exact path="/" component={PaintTemplateList} />
-                <Route path="/template/:templateId" component={PaintTemplateDetail} />
+                <Route path="/template/:templateId/:status" exact component={PaintTemplateDetail} />
+                <Route path="/template/:status" exact component={PaintTemplateDetail} />
             </div>
         </Router>
     )

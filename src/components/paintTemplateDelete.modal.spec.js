@@ -1,16 +1,16 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import PaintTemplateInfo from './paintTemplateInfo.modal';
+import PaintTemplateDelete from './PaintTemplateDelete.modal';
 
-describe('PaintTemplateInfo test suit', () => {
+describe('PaintTemplateDelete test suit', () => {
     it('renders without crashing', () => {
         const props = {
             currentTemplate: {},
             isOpen: true,
             handleClose: jest.fn(),
-            handleSubmit: jest.fn()
+            handleDelete: jest.fn()
         }
-        shallow(<PaintTemplateInfo {...props} />);
+        shallow(<PaintTemplateDelete {...props} />);
     });
 
     it('renders template informations', () => {
@@ -18,10 +18,10 @@ describe('PaintTemplateInfo test suit', () => {
             currentTemplate: {},
             isOpen: true,
             handleClose: jest.fn(),
-            handleSubmit: jest.fn()
+            handleDelete: jest.fn()
         }
-        const wrapper = shallow(<PaintTemplateInfo {...props} />);
-        expect(wrapper.find('#label').prop('value')).toEqual('');
+        const wrapper = shallow(<PaintTemplateDelete {...props} />);
+        expect(wrapper.find('.modal-title').text()).toEqual('');
 
         wrapper.setProps({
             currentTemplate: {
@@ -29,7 +29,7 @@ describe('PaintTemplateInfo test suit', () => {
             },
             isOpen: false,
         });
-        expect(wrapper.find('#label').prop('value')).toEqual('test');
+        expect(wrapper.find('.modal-title').text()).toEqual('test');
     });
 
     it('callback works as expected', () => {
@@ -41,16 +41,16 @@ describe('PaintTemplateInfo test suit', () => {
             },
             isOpen: true,
             handleClose: jest.fn(),
-            handleSubmit: jest.fn()
+            handleDelete: jest.fn()
         }
 
-        const wrapper = shallow(<PaintTemplateInfo {...props} />);
+        const wrapper = shallow(<PaintTemplateDelete {...props} />);
         wrapper.setProps(props);
 
-        wrapper.find('form').simulate('submit', { preventDefault () {} });
-        expect(props.handleSubmit.mock.calls[0][0]).toEqual(props.currentTemplate);
+        wrapper.find('#submitModal').simulate('click');
+        expect(props.handleDelete.mock.calls[0][0]).toEqual(props.currentTemplate);
 
-        wrapper.find('.modal-footer .btn-link').simulate('click');
+        wrapper.find('#closeModal').simulate('click');
         expect(props.handleClose.mock.calls.length).toBe(1);
     });
 });
