@@ -21,7 +21,7 @@ const PaintTemplateComponent = ({ isEditable, currentComponent, handleComponentC
 
         colorList = currentComponent.colors.map((color, index) => {
             return (
-                <Draggable key={color.id} draggableId={color.id} index={index}>
+                <Draggable key={color.id} draggableId={color.id} index={index} isDragDisabled={!isEditable}>
                     {(provided, snapshot) => (
                         <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className="tile tile-centered">
                             <div className="tile-icon">
