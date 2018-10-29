@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import PaintTemplateDelete from './PaintTemplateDelete.modal';
 
 describe('PaintTemplateDelete test suit', () => {
@@ -10,6 +10,7 @@ describe('PaintTemplateDelete test suit', () => {
             handleClose: jest.fn(),
             handleDelete: jest.fn()
         }
+
         shallow(<PaintTemplateDelete {...props} />);
     });
 
@@ -20,14 +21,19 @@ describe('PaintTemplateDelete test suit', () => {
             handleClose: jest.fn(),
             handleDelete: jest.fn()
         }
+
         const wrapper = shallow(<PaintTemplateDelete {...props} />);
+
+        // Empty informations
         expect(wrapper.find('.modal-title').text()).toEqual('');
 
+        // Non empty informations
         wrapper.setProps({
             currentTemplate: {
-                label: 'test'
-            },
-            isOpen: false,
+                id: 1,
+                label: 'test',
+                type: 'miniature'
+            }
         });
         expect(wrapper.find('.modal-title').text()).toEqual('test');
     });
@@ -45,12 +51,11 @@ describe('PaintTemplateDelete test suit', () => {
         }
 
         const wrapper = shallow(<PaintTemplateDelete {...props} />);
-        wrapper.setProps(props);
 
         wrapper.find('#submitModal').simulate('click');
         expect(props.handleDelete.mock.calls[0][0]).toEqual(props.currentTemplate);
 
         wrapper.find('#closeModal').simulate('click');
-        expect(props.handleClose.mock.calls.length).toBe(1);
+        expect(props.handleClose).toBeCalled();
     });
 });

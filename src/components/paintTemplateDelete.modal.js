@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 
 const PaintTemplateDelete = ({ isOpen, currentTemplate, handleDelete, handleClose }) => {
 
@@ -21,5 +22,12 @@ const PaintTemplateDelete = ({ isOpen, currentTemplate, handleDelete, handleClos
         </Modal >
     )
 }
+
+PaintTemplateDelete.propTypes = {
+    isOpen: PropTypes.bool,
+    currentTemplate: PropTypes.object,
+    handleDelete: PropTypes.func,
+    handleClose: PropTypes.func
+};
 
 export default PaintTemplateDelete;

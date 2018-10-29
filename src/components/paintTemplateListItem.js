@@ -27,8 +27,9 @@ const PaintTemplateListItem = ({ currentTemplate, handleEdit, askForDelete, hand
 
 PaintTemplateListItem.propTypes = {
     currentTemplate: PropTypes.object,
-    handleDelete: PropTypes.func,
     handleEdit: PropTypes.func,
+    askForDelete: PropTypes.func,
+    handleSelect: PropTypes.func
 };
 
 export default PaintTemplateListItem;

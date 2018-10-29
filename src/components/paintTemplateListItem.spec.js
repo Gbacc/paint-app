@@ -7,24 +7,34 @@ describe('PaintTemplateListItem test suit', () => {
         const props = {
             currentTemplate: {}
         }
-        shallow(<PaintTemplateListItem {...props} />);
+        
+        shallow(<PaintTemplateListItem {...props} />);        
     });
 
     it('renders template informations', () => {
         const props = {
-            currentTemplate: {
-                id: 1,
-                label: 'test',
-                type: 'miniature'
-            },
+            currentTemplate: {},
             handleEdit: jest.fn(),
             handleSelect: jest.fn(),
             askForDelete: jest.fn()
         }
 
         const wrapper = shallow(<PaintTemplateListItem {...props} />);
-        expect(wrapper.contains(<div className="tile-title">test</div>)).toEqual(true);
-        expect(wrapper.contains(<div className="tile-subtitle text-gray">miniature</div>)).toEqual(true);
+
+        // Empty informations
+        expect(wrapper.find('.tile-title').text()).toEqual('');
+        expect(wrapper.find('.tile-subtitle').text()).toEqual('');
+
+        // Non empty informations
+        wrapper.setProps({
+            currentTemplate: {
+                id: 1,
+                label: 'test',
+                type: 'miniature'
+            }
+        });
+        expect(wrapper.find('.tile-title').text()).toEqual('test');
+        expect(wrapper.find('.tile-subtitle').text()).toEqual('miniature');
     });
 
     it('callback works as expected', () => {
@@ -40,7 +50,7 @@ describe('PaintTemplateListItem test suit', () => {
         }
 
         const wrapper = shallow(<PaintTemplateListItem {...props} />);
-        
+
         wrapper.find('#editTemplate').simulate('click');
         expect(props.handleEdit.mock.calls[0][0]).toEqual(props.currentTemplate);
 
