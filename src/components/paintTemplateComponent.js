@@ -1,5 +1,6 @@
 import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import PropTypes from 'prop-types';
 
 const PaintTemplateComponent = ({ isEditable, currentComponent, handleComponentColorReorder, handleComponentColorRemove, handleComponentColorAdd, handleComponentLabelChange, handleComponentRemove }) => {
 
@@ -14,7 +15,7 @@ const PaintTemplateComponent = ({ isEditable, currentComponent, handleComponentC
         addColorBtn = <button id="addColor" className="btn btn-link tooltip tooltip-left col-ml-auto" data-tooltip="Add color" onClick={() => { handleComponentColorAdd(currentComponent.id) }}>
             <i className="icon icon-plus"></i>
         </button>;
-        removeComponentBtn = <button className="btn btn-link tooltip tooltip-left" data-tooltip="Remove component" onClick={() => { handleComponentRemove(currentComponent.id) }}><i className="icon icon-delete"></i></button>;
+        removeComponentBtn = <button id="removeComponent" className="btn btn-link tooltip tooltip-left" data-tooltip="Remove component" onClick={() => { handleComponentRemove(currentComponent.id) }}><i className="icon icon-delete"></i></button>;
     }
 
     if (currentComponent.colors && currentComponent.colors.length) {
@@ -63,5 +64,15 @@ const PaintTemplateComponent = ({ isEditable, currentComponent, handleComponentC
         </div>
     )
 }
+
+PaintTemplateComponent.propTypes = {
+    isEditable: PropTypes.bool,
+    currentComponent: PropTypes.object,
+    handleComponentColorReorder: PropTypes.func,
+    handleComponentColorRemove: PropTypes.func,
+    handleComponentColorAdd: PropTypes.func,
+    handleComponentLabelChange: PropTypes.func,
+    handleComponentRemove: PropTypes.func
+};
 
 export default PaintTemplateComponent;
