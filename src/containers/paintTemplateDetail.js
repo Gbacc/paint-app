@@ -156,7 +156,7 @@ export class PaintTemplateDetail extends Component {
 
         if (this.state.currentTemplate.components && this.state.currentTemplate.components.length) {
             componentList = this.state.currentTemplate.components.map((component, index) => {
-                return <PaintTemplateComponent key={index} isEditable={this.state.isEditable} currentComponent={component} handleComponentColorReorder={this.handleComponentColorReorder} handleComponentColorRemove={this.handleComponentColorRemove} handleComponentColorAdd={this.handleComponentColorAdd} handleComponentLabelChange={this.handleComponentLabelChange} handleComponentRemove={this.handleComponentRemove} />
+                return <PaintTemplateComponent key={component.id} isEditable={this.state.isEditable} currentComponent={component} handleComponentColorReorder={this.handleComponentColorReorder} handleComponentColorRemove={this.handleComponentColorRemove} handleComponentColorAdd={this.handleComponentColorAdd} handleComponentLabelChange={this.handleComponentLabelChange} handleComponentRemove={this.handleComponentRemove} />
             });
         }
 

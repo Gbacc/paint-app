@@ -62,7 +62,7 @@ export class PaintTemplateList extends Component {
 
     render() {
         const paintTemplatesList = this.props.paintTemplates.map((templateItem, index) => {
-            return <PaintTemplateListItem key={index} currentTemplate={templateItem} handleEdit={this.handleEdit} askForDelete={this.askForDelete} handleSelect={this.handleSelect} />
+            return <PaintTemplateListItem key={templateItem.id} currentTemplate={templateItem} handleEdit={this.handleEdit} askForDelete={this.askForDelete} handleSelect={this.handleSelect} />
         });
         return (
             <div className="container grid-sm">
