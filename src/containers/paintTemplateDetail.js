@@ -161,26 +161,24 @@ export class PaintTemplateDetail extends Component {
         }
 
         return (
-            <div className="container grid-sm">
-                <div className="panel">
-                    <div className="panel-header text-center">
-                        <figure className="avatar avatar-lg"><span className="icon icon-bookmark mt-2"></span></figure>
-                        <div className="panel-title h5 mt-2 relative">
-                            {this.state.currentTemplate.label}
-                        </div>
-                        <div className="panel-subtitle">{this.state.currentTemplate.type}</div>
+            <div className="panel">
+                <div className="panel-header text-center">
+                    <figure className="avatar avatar-lg"><span className="icon icon-bookmark mt-2"></span></figure>
+                    <div className="panel-title h5 mt-2 relative">
+                        {this.state.currentTemplate.label}
                     </div>
-                    <div className="panel-body">
-                        {componentList}
+                    <div className="panel-subtitle">{this.state.currentTemplate.type}</div>
+                </div>
+                <div className="panel-body">
+                    {componentList}
+                </div>
+                <div className="panel-footer">
+                    <div className="mb-2">
+                        {addComponentBtn}
                     </div>
-                    <div className="panel-footer">
-                        <div className="mb-2">
-                            {addComponentBtn}
-                        </div>
-                        <div className="columns col-gapless">
-                            {saveBtn}
-                            <button className="btn btn-link column tooltip" data-tooltip="Return to list" onClick={this.handleReturn}>Return</button>
-                        </div>
+                    <div className="columns col-gapless">
+                        {saveBtn}
+                        <button className="btn btn-link column tooltip" data-tooltip="Return to list" onClick={this.handleReturn}>Return</button>
                     </div>
                 </div>
             </div>

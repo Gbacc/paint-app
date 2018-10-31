@@ -67,7 +67,7 @@ export class PaintTemplateList extends Component {
             return <PaintTemplateListItem key={templateItem.id} currentTemplate={templateItem} handleEdit={this.handleEdit} askForDelete={this.askForDelete} handleSelect={this.handleSelect} />
         });
         return (
-            <div className="container grid-sm">
+            <div>
                 <div className="panel">
                     <div className="panel-header text-center">
                         <figure className="avatar avatar-lg"><span className="icon icon-bookmark mt-2"></span></figure>
