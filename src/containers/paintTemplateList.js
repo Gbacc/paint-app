@@ -15,15 +15,17 @@ export class PaintTemplateList extends Component {
             modalIsOpen: false
         }
 
-        this.props.listTemplate()
-        //.then(result => console.log(result));
-
         this.handleEdit = this.handleEdit.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
         this.askForDelete = this.askForDelete.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.listTemplate();
+        //.then(result => console.log(result));
     }
 
     handleSelect(template) {
