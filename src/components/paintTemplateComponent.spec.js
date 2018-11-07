@@ -10,9 +10,9 @@ describe('PaintTemplateComponent test suit', () => {
             currentComponent: {},
             handleComponentColorReorder: jest.fn(),
             handleComponentColorRemove: jest.fn(),
-            handleComponentColorAdd: jest.fn(),
             handleComponentLabelChange: jest.fn(),
-            handleComponentRemove: jest.fn()
+            handleComponentRemove: jest.fn(),
+            askForComponentColorAdd: jest.fn()
         }
 
         shallow(<PaintTemplateComponent {...props} />);
@@ -24,9 +24,9 @@ describe('PaintTemplateComponent test suit', () => {
             currentComponent: {},
             handleComponentColorReorder: jest.fn(),
             handleComponentColorRemove: jest.fn(),
-            handleComponentColorAdd: jest.fn(),
             handleComponentLabelChange: jest.fn(),
-            handleComponentRemove: jest.fn()
+            handleComponentRemove: jest.fn(),
+            askForComponentColorAdd: jest.fn()
         }
 
         const wrapper = mount(<PaintTemplateComponent {...props} />);
@@ -71,9 +71,9 @@ describe('PaintTemplateComponent test suit', () => {
             },
             handleComponentColorReorder: jest.fn(),
             handleComponentColorRemove: jest.fn(),
-            handleComponentColorAdd: jest.fn(),
             handleComponentLabelChange: jest.fn(),
-            handleComponentRemove: jest.fn()
+            handleComponentRemove: jest.fn(),
+            askForComponentColorAdd: jest.fn()
         }
 
         const wrapper = mount(<PaintTemplateComponent {...props} />);
@@ -111,20 +111,20 @@ describe('PaintTemplateComponent test suit', () => {
             },
             handleComponentColorReorder: jest.fn(),
             handleComponentColorRemove: jest.fn(),
-            handleComponentColorAdd: jest.fn(),
             handleComponentLabelChange: jest.fn(),
-            handleComponentRemove: jest.fn()
+            handleComponentRemove: jest.fn(),
+            askForComponentColorAdd: jest.fn()
         }
 
         const wrapper = mount(<PaintTemplateComponent {...props} />);
 
         // Add a color
         wrapper.find('#addColor').simulate('click');
-        expect(props.handleComponentColorAdd.mock.calls[0][0]).toEqual(props.currentComponent.id);
+        expect(props.askForComponentColorAdd.mock.calls[0][0]).toEqual(props.currentComponent.id);
 
         // Remove the component
         wrapper.find('#removeComponent').simulate('click');
-        expect(props.handleComponentColorAdd.mock.calls[0][0]).toEqual(props.currentComponent.id);
+        expect(props.askForComponentColorAdd.mock.calls[0][0]).toEqual(props.currentComponent.id);
 
         // Change label
         const newLabel = 'truc';

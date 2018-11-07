@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { getTemplateById } from '../models/template';
 import PaintTemplateComponent from '../components/paintTemplateComponent';
+import ColorPicker from './colorPicker';
+import Modal from 'react-modal';
 
 export class PaintTemplateDetail extends Component {
 
@@ -12,18 +14,16 @@ export class PaintTemplateDetail extends Component {
                 components: []
             },
             modalIsOpen: false,
-            isEditable: false
+            isEditable: false,
+            currentComponent: null
         }
-
-
-        // getPaintList().then(result => {
-        //     console.log(result)
-        // });
 
         this.handleSave = this.handleSave.bind(this);
         this.handleReturn = this.handleReturn.bind(this);
         this.handleComponentColorReorder = this.handleComponentColorReorder.bind(this);
         this.handleComponentColorRemove = this.handleComponentColorRemove.bind(this);
+        this.askForComponentColorAdd = this.askForComponentColorAdd.bind(this);
+        this.handleComponentColorModalClose = this.handleComponentColorModalClose.bind(this);
         this.handleComponentColorAdd = this.handleComponentColorAdd.bind(this);
         this.handleComponentAdd = this.handleComponentAdd.bind(this);
         this.handleComponentRemove = this.handleComponentRemove.bind(this);
@@ -53,6 +53,8 @@ export class PaintTemplateDetail extends Component {
     }
 
     handleComponentColorReorder(componentId, dragEndEvent) {
+        // TODO : gestion des couleurs en doublon HS
+
         const component = this.state.currentTemplate.components.find(componentItem => componentItem.id === componentId);
         const colors = [...component.colors];
         const startIndex = dragEndEvent.source.index;
@@ -89,21 +91,36 @@ export class PaintTemplateDetail extends Component {
         });
     }
 
-    handleComponentColorAdd(componentId, colorItem) {
-        console.log(componentId, colorItem)
-        // const component = this.state.currentTemplate.components.find(componentItem => componentItem.id === componentId);
-        // const colors = [...component.colors, colorItem];
+    askForComponentColorAdd(componentId) {
+        this.setState({
+            modalIsOpen: true,
+            currentComponent: componentId
+        })
+    }
 
-        // this.setState({
-        //     currentTemplate: Object.assign({}, this.state.currentTemplate, {
-        //         components: this.state.currentTemplate.components.map(componentItem => {
-        //             if (componentItem.id === componentId) {
-        //                 return Object.assign({}, componentItem, { colors: colors });
-        //             }
-        //             return componentItem;
-        //         })
-        //     })
-        // });
+    handleComponentColorModalClose() {
+        this.setState({
+            modalIsOpen: false,
+            currentComponent: null
+        });
+    }
+
+    handleComponentColorAdd(colorItem) {
+        const component = this.state.currentTemplate.components.find(componentItem => componentItem.id === this.state.currentComponent);
+        const colors = [...component.colors, colorItem];
+
+        this.setState({
+            currentTemplate: Object.assign({}, this.state.currentTemplate, {
+                components: this.state.currentTemplate.components.map(componentItem => {
+                    if (componentItem.id === this.state.currentComponent) {
+                        return Object.assign({}, componentItem, { colors: colors });
+                    }
+                    return componentItem;
+                })
+            }),
+            modalIsOpen: false,
+            currentComponent: null
+        });
     }
 
     handleComponentLabelChange(componentId, label) {
@@ -156,7 +173,7 @@ export class PaintTemplateDetail extends Component {
 
         if (this.state.currentTemplate.components && this.state.currentTemplate.components.length) {
             componentList = this.state.currentTemplate.components.map((component, index) => {
-                return <PaintTemplateComponent key={component.id} isEditable={this.state.isEditable} currentComponent={component} handleComponentColorReorder={this.handleComponentColorReorder} handleComponentColorRemove={this.handleComponentColorRemove} handleComponentColorAdd={this.handleComponentColorAdd} handleComponentLabelChange={this.handleComponentLabelChange} handleComponentRemove={this.handleComponentRemove} />
+                return <PaintTemplateComponent key={component.id} isEditable={this.state.isEditable} currentComponent={component} handleComponentColorReorder={this.handleComponentColorReorder} handleComponentColorRemove={this.handleComponentColorRemove} askForComponentColorAdd={this.askForComponentColorAdd} handleComponentLabelChange={this.handleComponentLabelChange} handleComponentRemove={this.handleComponentRemove} />
             });
         }
 
@@ -181,6 +198,19 @@ export class PaintTemplateDetail extends Component {
                         <button className="btn btn-link column tooltip" data-tooltip="Return to list" onClick={this.handleReturn}>Return</button>
                     </div>
                 </div>
+                <Modal className="modal active" isOpen={this.state.modalIsOpen}>
+                    <div className="modal-overlay"></div>
+                    <div className="modal-container">
+                        <div className="modal-header">
+                            <a className="btn btn-clear float-right" href="#modals" aria-label="Close" onClick={this.handleComponentColorModalClose}></a>
+                            <div className="modal-title h5">Select a color</div>
+                        </div>
+                        <div className="modal-body">
+                            <ColorPicker handleComponentColorAdd={this.handleComponentColorAdd}></ColorPicker>
+                        </div>
+                    </div>
+
+                </Modal>
             </div>
         )
     }

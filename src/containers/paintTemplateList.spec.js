@@ -13,6 +13,7 @@ describe('PaintTemplateList test suit', () => {
         }
         
         shallow(<PaintTemplateList {...props} />);
+        expect(props.listTemplate).toBeCalled();
     });
 
     it('renders template informations', () => {

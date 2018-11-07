@@ -2,7 +2,7 @@ import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import PropTypes from 'prop-types';
 
-const PaintTemplateComponent = ({ isEditable, currentComponent, handleComponentColorReorder, handleComponentColorRemove, handleComponentColorAdd, handleComponentLabelChange, handleComponentRemove }) => {
+const PaintTemplateComponent = ({ isEditable, currentComponent, handleComponentColorReorder, handleComponentColorRemove, askForComponentColorAdd, handleComponentLabelChange, handleComponentRemove }) => {
 
     let colorList = [];
     let componentLabel = <h5 className="col-10 col-mr-auto">{currentComponent.label}</h5>;
@@ -12,7 +12,7 @@ const PaintTemplateComponent = ({ isEditable, currentComponent, handleComponentC
     // Ajout des couleurs
     if (isEditable) {
         componentLabel = <div className="form-group"><input className="form-input" type="text" id="componentLabel" placeholder="Label" value={currentComponent.label} onChange={(event) => { handleComponentLabelChange(currentComponent.id, event.target.value) }} /></div>;
-        addColorBtn = <button id="addColor" className="btn btn-link tooltip tooltip-left col-ml-auto" data-tooltip="Add color" onClick={() => { handleComponentColorAdd(currentComponent.id) }}>
+        addColorBtn = <button id="addColor" className="btn btn-link tooltip tooltip-left col-ml-auto" data-tooltip="Add color" onClick={() => { askForComponentColorAdd(currentComponent.id) }}>
             <i className="icon icon-plus"></i>
         </button>;
         removeComponentBtn = <button id="removeComponent" className="btn btn-link tooltip tooltip-left" data-tooltip="Remove component" onClick={() => { handleComponentRemove(currentComponent.id) }}><i className="icon icon-delete"></i></button>;
@@ -70,7 +70,7 @@ PaintTemplateComponent.propTypes = {
     currentComponent: PropTypes.object,
     handleComponentColorReorder: PropTypes.func,
     handleComponentColorRemove: PropTypes.func,
-    handleComponentColorAdd: PropTypes.func,
+    askForComponentColorAdd: PropTypes.func,
     handleComponentLabelChange: PropTypes.func,
     handleComponentRemove: PropTypes.func
 };
