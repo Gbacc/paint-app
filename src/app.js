@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 const App = () => {
     return (
         <Router>
-            <div className="container grid-sm">
+            <div className="container grid-xs">
                 <Route exact path="/" component={PaintTemplateList} />
                 <Route path="/template/:templateId/:status" exact component={PaintTemplateDetail} />
                 <Route path="/template/:status" exact component={PaintTemplateDetail} />

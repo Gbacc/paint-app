@@ -22,7 +22,7 @@ const PaintTemplateComponent = ({ isEditable, currentComponent, handleComponentC
 
         colorList = currentComponent.colors.map((color, index) => {
             return (
-                <Draggable key={color.id} draggableId={color.id} index={index} isDragDisabled={!isEditable}>
+                <Draggable key={index} draggableId={index} index={index} isDragDisabled={!isEditable}>
                     {(provided, snapshot) => (
                         <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className="tile tile-centered">
                             <div className="tile-icon">
@@ -34,7 +34,7 @@ const PaintTemplateComponent = ({ isEditable, currentComponent, handleComponentC
                                 <div className="tile-subtitle text-gray">{color.type}</div>
                             </div>
                             <div className="tile-action">
-                                {isEditable && <button id="deleteColor" className="btn btn-link tooltip tooltip-left" data-tooltip="Delete color" onClick={() => { handleComponentColorRemove(currentComponent.id, color.id) }}>
+                                {isEditable && <button id="deleteColor" className="btn btn-link tooltip tooltip-left" data-tooltip="Delete color" onClick={() => { handleComponentColorRemove(currentComponent.id, color.id, index) }}>
                                     <i className="icon icon-delete"></i>
                                 </button>}
                             </div>
