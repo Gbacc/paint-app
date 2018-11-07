@@ -11,7 +11,8 @@ export class PaintTemplateDetail extends Component {
 
         this.state = {
             currentTemplate: {
-                components: []
+                components: [],
+                label: ''
             },
             modalIsOpen: false,
             isEditable: false,
@@ -28,6 +29,8 @@ export class PaintTemplateDetail extends Component {
         this.handleComponentAdd = this.handleComponentAdd.bind(this);
         this.handleComponentRemove = this.handleComponentRemove.bind(this);
         this.handleComponentLabelChange = this.handleComponentLabelChange.bind(this);
+        this.handleTemplateLabelChange = this.handleTemplateLabelChange.bind(this);
+        this.handleTemplateTypeChange = this.handleTemplateTypeChange.bind(this);
     }
 
     componentDidMount() {
@@ -53,8 +56,6 @@ export class PaintTemplateDetail extends Component {
     }
 
     handleComponentColorReorder(componentId, dragEndEvent) {
-        // TODO : gestion des couleurs en doublon HS
-
         const component = this.state.currentTemplate.components.find(componentItem => componentItem.id === componentId);
         const colors = [...component.colors];
         const startIndex = dragEndEvent.source.index;
@@ -75,9 +76,9 @@ export class PaintTemplateDetail extends Component {
         });
     }
 
-    handleComponentColorRemove(componentId, colorId) {
+    handleComponentColorRemove(componentId, colorId, index) {
         const component = this.state.currentTemplate.components.find(componentItem => componentItem.id === componentId);
-        const colors = component.colors.filter(colorItem => colorItem.id !== colorId);
+        const colors = component.colors.filter((colorItem, indexItem) => indexItem !== index);
 
         this.setState({
             currentTemplate: Object.assign({}, this.state.currentTemplate, {
@@ -161,12 +162,31 @@ export class PaintTemplateDetail extends Component {
         });
     }
 
+    handleTemplateLabelChange(newLabel) {
+        this.setState({
+            currentTemplate: Object.assign({}, this.state.currentTemplate, {
+                label: newLabel
+            })
+        });
+    }
+
+    handleTemplateTypeChange(newType) {
+        this.setState({
+            currentTemplate: Object.assign({}, this.state.currentTemplate, {
+                type: newType
+            })
+        });
+    }
 
     render() {
         let componentList = [];
+        let componentLabel = <span><figure className="avatar avatar-lg"><span className="icon icon-bookmark mt-2"></span></figure><div className="panel-title h5 mt-2 relative">{this.state.currentTemplate.label}</div></span>;
+        let componentType = <div className="panel-subtitle">{this.state.currentTemplate.type}</div>;
         let addComponentBtn, saveBtn;
 
         if (this.state.isEditable) {
+            componentLabel = <div className="form-group"><input className="form-input" type="text" id="templateLabel" placeholder="Label" value={this.state.currentTemplate.label} onChange={(event) => { this.handleTemplateLabelChange(event.target.value) }} /></div>;
+            componentType = <div className="form-group"><select className="form-select" id="templateType" value={this.state.currentTemplate.type} onChange={(event) => this.handleTemplateTypeChange(event.target.value)}><option value="miniature">miniature</option><option value="base">base</option></select></div>
             addComponentBtn = <button className="btn col-12 tooltip" data-tooltip="Add a component" onClick={this.handleComponentAdd}>Add a component</button>;
             saveBtn = <button className="btn btn-primary column col-6 tooltip" data-tooltip="Save template" onClick={this.handleSave}>Save</button>;
         }
@@ -180,11 +200,8 @@ export class PaintTemplateDetail extends Component {
         return (
             <div className="panel">
                 <div className="panel-header text-center">
-                    <figure className="avatar avatar-lg"><span className="icon icon-bookmark mt-2"></span></figure>
-                    <div className="panel-title h5 mt-2 relative">
-                        {this.state.currentTemplate.label}
-                    </div>
-                    <div className="panel-subtitle">{this.state.currentTemplate.type}</div>
+                    {componentLabel}
+                    {componentType}
                 </div>
                 <div className="panel-body">
                     {componentList}

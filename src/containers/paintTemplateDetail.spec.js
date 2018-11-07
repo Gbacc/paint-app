@@ -60,6 +60,23 @@ describe('PaintTemplateDetail test suit', () => {
         expect(wrapper.contains(<div className="panel-subtitle">miniature</div>)).toEqual(true);
     });
 
+    it('can update a template', async () => {
+        const props = {
+            match: {
+                params: {}
+            }
+        }
+        const wrapper = shallow(<PaintTemplateDetail {...props} />);
+
+        // Change label
+        wrapper.instance().handleTemplateLabelChange('test');
+        expect(wrapper.state().currentTemplate.label).toEqual('test');
+
+        // Change type
+        wrapper.instance().handleTemplateTypeChange('base');
+        expect(wrapper.state().currentTemplate.type).toEqual('base');
+    });
+
     it('can add/update/remove a component', () => {
         const props = {
             match: {
@@ -123,7 +140,7 @@ describe('PaintTemplateDetail test suit', () => {
         // TODO : component reorder
 
         // Delete a color
-        wrapper.instance().handleComponentColorRemove(updatedComponent.id, updatedComponent.colors[0].id);
+        wrapper.instance().handleComponentColorRemove(updatedComponent.id, updatedComponent.colors[0].id, 0);
         const updatedColorComponent = wrapper.state().currentTemplate.components[0].colors;
         expect(updatedColorComponent.length).toEqual(1);
     });
