@@ -29,7 +29,7 @@ export class PaintTemplateList extends Component {
     }
 
     handleSelect(template) {
-        this.props.history.push('/template/' + template.id+ '/show');
+        this.props.history.push('/template/' + template.id + '/show');
     }
 
     handleEdit(template) {
@@ -67,19 +67,17 @@ export class PaintTemplateList extends Component {
             return <PaintTemplateListItem key={templateItem.id} currentTemplate={templateItem} handleEdit={this.handleEdit} askForDelete={this.askForDelete} handleSelect={this.handleSelect} />
         });
         return (
-            <div>
-                <div className="panel">
-                    <div className="panel-header text-center">
-                        <figure className="avatar avatar-lg"><span className="icon icon-bookmark mt-2"></span></figure>
-                        <div className="panel-title h5 mt-2">Paint templates</div>
-                        <div className="panel-subtitle">{this.props.paintTemplates.length} templates</div>
-                    </div>
-                    <div className="panel-body">
-                        {paintTemplatesList}
-                    </div>
-                    <div className="panel-footer">
-                        <button className="btn btn-primary btn-block tooltip" data-tooltip="Add new template" onClick={this.handleAdd}>New</button>
-                    </div>
+            <div className="panel">
+                <div className="panel-header text-center">
+                    <figure className="avatar avatar-lg"><span className="icon icon-bookmark mt-2"></span></figure>
+                    <div className="panel-title h5 mt-2">Paint templates</div>
+                    <div className="panel-subtitle">{this.props.paintTemplates.length} templates</div>
+                </div>
+                <div className="panel-body">
+                    {paintTemplatesList}
+                </div>
+                <div className="panel-footer">
+                    <button className="btn btn-primary btn-block tooltip" data-tooltip="Add new template" onClick={this.handleAdd}>New</button>
                 </div>
                 <PaintTemplateDelete currentTemplate={this.state.currentTemplate} isOpen={this.state.modalIsOpen} handleClose={this.handleClose} handleDelete={this.handleDelete} />
             </div>

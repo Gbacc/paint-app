@@ -1,0 +1,28 @@
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: white;
+}
+
+#menu {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 50px;
+    padding: 0.4em 0;
+}
+
+#menu .spacer {
+    flex: 1 1 100%;
+}
+
+#container {
+    flex: 1 1 100%;
+    overflow: auto;
+}
+
+#footer {
+    text-align: center;
+    justify-content: center;
+    padding: 0.4em 0;
+}
