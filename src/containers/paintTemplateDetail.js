@@ -219,7 +219,7 @@ export class PaintTemplateDetail extends Component {
                     <div className="modal-overlay"></div>
                     <div className="modal-container">
                         <div className="modal-header">
-                            <a className="btn btn-clear float-right" href="#modals" aria-label="Close" onClick={this.handleComponentColorModalClose}></a>
+                            <span className="btn btn-clear float-right" href="#modals" aria-label="Close" onClick={this.handleComponentColorModalClose}></span>
                             <div className="modal-title h5">Select a color</div>
                         </div>
                         <div className="modal-body">

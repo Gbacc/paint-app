@@ -9,7 +9,7 @@ const PaintTemplateDelete = ({ isOpen, currentTemplate, handleDelete, handleClos
             <div className="modal-overlay"></div>
             <div className="modal-container">
                 <div className="modal-header">
-                    <a className="btn btn-clear float-right" href="#modals" aria-label="Close" onClick={handleClose}></a>
+                    <span className="btn btn-clear float-right" href="#modals" aria-label="Close" onClick={handleClose}></span>
                     <div className="modal-title h5">{currentTemplate.label}</div>
                 </div>
                 <div className="modal-body">
