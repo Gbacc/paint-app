@@ -51,7 +51,8 @@ export class PaintTemplateDetail extends Component {
         this.props.history.push('/');
     }
 
-    handleSave() {
+    handleSave(event) {
+        event.preventDefault();
         console.log(this.state.currentTemplate);
     }
 
@@ -185,10 +186,10 @@ export class PaintTemplateDetail extends Component {
         let addComponentBtn, saveBtn;
 
         if (this.state.isEditable) {
-            componentLabel = <div className="form-group"><input className="form-input" type="text" id="templateLabel" placeholder="Label" value={this.state.currentTemplate.label} onChange={(event) => { this.handleTemplateLabelChange(event.target.value) }} /></div>;
+            componentLabel = <div className="form-group"><input className="form-input" type="text" id="templateLabel" placeholder="Label" value={this.state.currentTemplate.label} onChange={(event) => { this.handleTemplateLabelChange(event.target.value) }} required /></div>;
             componentType = <div className="form-group"><select className="form-select" id="templateType" value={this.state.currentTemplate.type} onChange={(event) => this.handleTemplateTypeChange(event.target.value)}><option value="miniature">miniature</option><option value="base">base</option></select></div>
             addComponentBtn = <button className="btn col-12 tooltip" data-tooltip="Add a component" onClick={this.handleComponentAdd}>Add a component</button>;
-            saveBtn = <button className="btn btn-primary column col-6 tooltip" data-tooltip="Save template" onClick={this.handleSave}>Save</button>;
+            saveBtn = <input type="submit" value="Save" className="btn btn-primary column col-6 tooltip" data-tooltip="Save template"/>;
         }
 
         if (this.state.currentTemplate.components && this.state.currentTemplate.components.length) {
@@ -199,22 +200,24 @@ export class PaintTemplateDetail extends Component {
 
         return (
             <div className="panel">
-                <div className="panel-header text-center">
-                    {componentLabel}
-                    {componentType}
-                </div>
-                <div className="panel-body">
-                    {componentList}
-                </div>
-                <div className="panel-footer">
-                    <div className="mb-2">
-                        {addComponentBtn}
+                <form onSubmit={(event) => this.handleSave(event)}>
+                    <div className="panel-header text-center">
+                        {componentLabel}
+                        {componentType}
                     </div>
-                    <div className="columns col-gapless">
-                        {saveBtn}
-                        <button className="btn btn-link column tooltip" data-tooltip="Return to list" onClick={this.handleReturn}>Return</button>
+                    <div className="panel-body">
+                        {componentList}
                     </div>
-                </div>
+                    <div className="panel-footer">
+                        <div className="mb-2">
+                            {addComponentBtn}
+                        </div>
+                        <div className="columns col-gapless">
+                            {saveBtn}
+                            <button className="btn btn-link column tooltip" data-tooltip="Return to list" onClick={this.handleReturn}>Return</button>
+                        </div>
+                    </div>
+                </form>
                 <Modal className="modal active" isOpen={this.state.modalIsOpen}>
                     <div className="modal-overlay"></div>
                     <div className="modal-container">
@@ -226,7 +229,6 @@ export class PaintTemplateDetail extends Component {
                             <ColorPicker handleComponentColorAdd={this.handleComponentColorAdd}></ColorPicker>
                         </div>
                     </div>
-
                 </Modal>
             </div>
         )

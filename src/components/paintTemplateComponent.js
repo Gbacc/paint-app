@@ -11,7 +11,7 @@ const PaintTemplateComponent = ({ isEditable, currentComponent, handleComponentC
 
     // Ajout des couleurs
     if (isEditable) {
-        componentLabel = <div className="form-group"><input className="form-input" type="text" id="componentLabel" placeholder="Label" value={currentComponent.label} onChange={(event) => { handleComponentLabelChange(currentComponent.id, event.target.value) }} /></div>;
+        componentLabel = <div className="form-group"><input className="form-input" type="text" id="componentLabel" placeholder="Label" value={currentComponent.label} onChange={(event) => { handleComponentLabelChange(currentComponent.id, event.target.value) }} required /></div>;
         addColorBtn = <button id="addColor" className="btn btn-link tooltip tooltip-left col-ml-auto" data-tooltip="Add color" onClick={() => { askForComponentColorAdd(currentComponent.id) }}>
             <i className="icon icon-plus"></i>
         </button>;
@@ -46,7 +46,7 @@ const PaintTemplateComponent = ({ isEditable, currentComponent, handleComponentC
     }
 
     return (
-        <div className="mt-2 container">
+        <div className="mt-2">
             <div className="columns col-gapless">
                 {componentLabel}
                 {addColorBtn}
