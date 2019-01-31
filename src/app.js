@@ -13,7 +13,7 @@ const App = () => {
                 <div id="menu">
                     <i className="icon icon-menu icon-2x"></i>
                     <span className="spacer"></span>
-                    <a className="btn btn-small" href="https://github.com/Gbacc/paint-app" target="_blank">GitHub</a>
+                    <a className="btn btn-small" rel="noopener noreferrer" href="https://github.com/Gbacc/paint-app" target="_blank">GitHub</a>
                 </div>
                 <div id="container">
                     <Route exact path="/" component={PaintTemplateList} />
@@ -22,7 +22,7 @@ const App = () => {
                     <Route path="/color-picker" exact component={ColorPicker} />
                 </div>
                 <div id="footer">
-                    <span className="text-center text-gray">Designed and built by <a href="https://github.com/Gbacc/paint-app" target="_blank">Gbacc</a></span>
+                    <span className="text-center text-gray">Designed and built by <a rel="noopener noreferrer" href="https://github.com/Gbacc/paint-app" target="_blank">Gbacc</a></span>
                 </div>
             </div>
         </Router>
