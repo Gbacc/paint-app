@@ -61,6 +61,54 @@
                         "color": "#C3CACE"
                     }
                 ]
+            },
+            {
+                "id": 3,
+                "label": "Black parts",
+                "colors": [
+                    {
+                        "id": 1,
+                        "label": "Abaddon Black",
+                        "type": "Base",
+                        "color": "#231F20"
+                    },
+                    {
+                        "id": 50,
+                        "label": "Dawnstone",
+                        "type": "Layer",
+                        "color": "#70756E"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "label": "Eyes",
+                "colors": [
+                    {
+                        "id": 14,
+                        "label": "Incubi Darkness",
+                        "type": "Base",
+                        "color": "#0B474A"
+                    },
+                    {
+                        "id": 68,
+                        "label": "Kabalite Green",
+                        "type": "Layer",
+                        "color": "#038C67"
+                    },
+                    {
+                        "id": 74,
+                        "label": "Moot Green",
+                        "type": "Layer",
+                        "color": "#52B244"
+                    },
+                    {
+                        "id": 9,
+                        "label": "Ceramite White",
+                        "type": "Base",
+                        "color": "#FFFFFF"
+                    }
+                ]
             }
         ]
     },
@@ -68,7 +116,104 @@
         "id": 2,
         "label": "Rubricae",
         "type": "miniature",
-        "components": []
+        "components": [
+            {
+                "id": 604,
+                "label": "Armor",
+                "colors": [
+                    {
+                        "id": 5,
+                        "label": "Caledor Sky",
+                        "type": "Base",
+                        "color": "#396E9E"
+                    },
+                    {
+                        "id": 66,
+                        "label": "Hoeth Blue",
+                        "type": "Layer",
+                        "color": "#4C7FB4"
+                    },
+                    {
+                        "id": 97,
+                        "label": "Teclis Blue",
+                        "type": "Layer",
+                        "color": "#317EC1"
+                    }
+                ]
+            },
+            {
+                "id": 100,
+                "label": "Armor metals",
+                "colors": [
+                    {
+                        "id": 3,
+                        "label": "Balthasar Gold (Metal)",
+                        "type": "Base",
+                        "color": "#A47552"
+                    },
+                    {
+                        "id": 128,
+                        "label": "Seraphim Sepia",
+                        "type": "Shade",
+                        "color": "#D7824B"
+                    },
+                    {
+                        "id": 62,
+                        "label": "Gehenna's Gold (Metal)",
+                        "type": "Layer",
+                        "color": "#DBA674"
+                    },
+                    {
+                        "id": 79,
+                        "label": "Runefang Steel (Metal)",
+                        "type": "Layer",
+                        "color": "#C3CACE"
+                    }
+                ]
+            },
+            {
+                "id": 633,
+                "label": "Metals",
+                "colors": [
+                    {
+                        "id": 18,
+                        "label": "Leadbelcher (Metal)",
+                        "type": "Base",
+                        "color": "#888D8F"
+                    },
+                    {
+                        "id": 124,
+                        "label": "Nuln Oil",
+                        "type": "Shade",
+                        "color": "#14100E"
+                    },
+                    {
+                        "id": 79,
+                        "label": "Runefang Steel (Metal)",
+                        "type": "Layer",
+                        "color": "#C3CACE"
+                    }
+                ]
+            },
+            {
+                "id": 702,
+                "label": "Yellow",
+                "colors": [
+                    {
+                        "id": 2,
+                        "label": "Averland Sunset",
+                        "type": "Base",
+                        "color": "#FDB825"
+                    },
+                    {
+                        "id": 9,
+                        "label": "Ceramite White",
+                        "type": "Base",
+                        "color": "#FFFFFF"
+                    }
+                ]
+            }
+        ]
     },
     {
         "id": 3,
