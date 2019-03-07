@@ -2,7 +2,7 @@ import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import PropTypes from 'prop-types';
 
-const PaintTemplateComponent = ({ isEditable, currentComponent, handleComponentColorReorder, handleComponentColorRemove, askForComponentColorAdd, handleComponentLabelChange, handleComponentRemove }) => {
+const PaintTemplateDetailComponent = ({ isEditable, currentComponent, handleComponentColorReorder, handleComponentColorRemove, askForComponentColorAdd, handleComponentLabelChange, handleComponentRemove }) => {
 
     let colorList = [];
     let componentLabel = <h5 className="col-10 col-mr-auto">{currentComponent.label}</h5>;
@@ -65,7 +65,7 @@ const PaintTemplateComponent = ({ isEditable, currentComponent, handleComponentC
     )
 }
 
-PaintTemplateComponent.propTypes = {
+PaintTemplateDetailComponent.propTypes = {
     isEditable: PropTypes.bool,
     currentComponent: PropTypes.object,
     handleComponentColorReorder: PropTypes.func,
@@ -75,4 +75,4 @@ PaintTemplateComponent.propTypes = {
     handleComponentRemove: PropTypes.func
 };
 
-export default PaintTemplateComponent;
+export default PaintTemplateDetailComponent;

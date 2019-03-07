@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getTemplateById } from '../models/template';
-import PaintTemplateComponent from '../components/paintTemplateComponent';
+import PaintTemplateDetailComponent from '../components/paintTemplateDetailComponent';
+import PaintTemplateDetailHeader from '../components/paintTemplateDetailHeader';
 import ColorPicker from './colorPicker';
 import Modal from 'react-modal';
 
@@ -180,21 +181,17 @@ export class PaintTemplateDetail extends Component {
     }
 
     render() {
-        let componentList = [];
-        let componentLabel = <span><figure className="avatar avatar-lg"><span className="icon icon-bookmark mt-2"></span></figure><div className="panel-title h5 mt-2 relative">{this.state.currentTemplate.label}</div></span>;
-        let componentType = <div className="panel-subtitle">{this.state.currentTemplate.type}</div>;
+        let componentList = [];        
         let addComponentBtn, saveBtn;
 
         if (this.state.isEditable) {
-            componentLabel = <div className="form-group"><input className="form-input" type="text" id="templateLabel" placeholder="Label" value={this.state.currentTemplate.label} onChange={(event) => { this.handleTemplateLabelChange(event.target.value) }} required /></div>;
-            componentType = <div className="form-group"><select className="form-select" id="templateType" value={this.state.currentTemplate.type} onChange={(event) => this.handleTemplateTypeChange(event.target.value)}><option value="miniature">miniature</option><option value="base">base</option></select></div>
             addComponentBtn = <button className="btn col-12 tooltip" data-tooltip="Add a component" onClick={this.handleComponentAdd}>Add a component</button>;
             saveBtn = <input type="submit" value="Save" className="btn btn-primary column col-6 tooltip" data-tooltip="Save template"/>;
         }
 
         if (this.state.currentTemplate.components && this.state.currentTemplate.components.length) {
             componentList = this.state.currentTemplate.components.map((component, index) => {
-                return <PaintTemplateComponent key={component.id} isEditable={this.state.isEditable} currentComponent={component} handleComponentColorReorder={this.handleComponentColorReorder} handleComponentColorRemove={this.handleComponentColorRemove} askForComponentColorAdd={this.askForComponentColorAdd} handleComponentLabelChange={this.handleComponentLabelChange} handleComponentRemove={this.handleComponentRemove} />
+                return <PaintTemplateDetailComponent key={component.id} isEditable={this.state.isEditable} currentComponent={component} handleComponentColorReorder={this.handleComponentColorReorder} handleComponentColorRemove={this.handleComponentColorRemove} askForComponentColorAdd={this.askForComponentColorAdd} handleComponentLabelChange={this.handleComponentLabelChange} handleComponentRemove={this.handleComponentRemove} />
             });
         }
 
@@ -202,8 +199,7 @@ export class PaintTemplateDetail extends Component {
             <div className="panel">
                 <form onSubmit={(event) => this.handleSave(event)}>
                     <div className="panel-header text-center">
-                        {componentLabel}
-                        {componentType}
+                        <PaintTemplateDetailHeader isEditable={this.state.isEditable} currentTemplate={this.state.currentTemplate} handleTemplateLabelChange={this.handleTemplateLabelChange} handleTemplateTypeChange={this.handleTemplateTypeChange}></PaintTemplateDetailHeader>
                     </div>
                     <div className="panel-body">
                         {componentList}

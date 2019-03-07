@@ -1,5 +1,5 @@
 import React from 'react';
-import PaintTemplateComponent from '../components/paintTemplateComponent';
+import PaintTemplateDetailComponent from '../components/paintTemplateDetailComponent';
 import { shallow } from 'enzyme';
 import { PaintTemplateDetail } from './paintTemplateDetail';
 import Modal from 'react-modal';
@@ -43,23 +43,6 @@ describe('PaintTemplateDetail test suit', () => {
         shallow(<PaintTemplateDetail {...props} />);
     });
 
-    it('renders template informations', async () => {
-        const props = {
-            match: {
-                params: {
-                    templateId: 2
-                }
-            }
-        }
-        const wrapper = shallow(<PaintTemplateDetail {...props} />);
-
-        await wrapper.instance().componentDidMount()
-        await new Promise(resolve => setTimeout(resolve, 1000))
-
-        expect(wrapper.find('.panel-title').text()).toEqual('Rubricae');
-        expect(wrapper.contains(<div className="panel-subtitle">miniature</div>)).toEqual(true);
-    });
-
     it('can update a template', async () => {
         const props = {
             match: {
@@ -87,7 +70,7 @@ describe('PaintTemplateDetail test suit', () => {
 
         // Add a component
         wrapper.instance().handleComponentAdd();
-        expect(wrapper.find(PaintTemplateComponent).length).toEqual(1);
+        expect(wrapper.find(PaintTemplateDetailComponent).length).toEqual(1);
 
         const newComponent = wrapper.state().currentTemplate.components[0];
         expect(newComponent.state).toEqual('new');
@@ -99,7 +82,7 @@ describe('PaintTemplateDetail test suit', () => {
 
         // Remove component
         wrapper.instance().handleComponentRemove(updatedComponent.id);
-        expect(wrapper.find(PaintTemplateComponent).length).toEqual(0);
+        expect(wrapper.find(PaintTemplateDetailComponent).length).toEqual(0);
     });
 
     it('can add/remove/reorder a color inside a component', async () => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import PaintTemplateComponent from './paintTemplateComponent';
+import PaintTemplateDetailComponent from './paintTemplateDetailComponent';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-describe('PaintTemplateComponent test suit', () => {
+describe('PaintTemplateDetailComponent test suit', () => {
     it('renders without crashing', () => {
         const props = {
             isEditable: false,
@@ -15,7 +15,7 @@ describe('PaintTemplateComponent test suit', () => {
             askForComponentColorAdd: jest.fn()
         }
 
-        shallow(<PaintTemplateComponent {...props} />);
+        shallow(<PaintTemplateDetailComponent {...props} />);
     });
 
     it('renders template informations', () => {
@@ -29,7 +29,7 @@ describe('PaintTemplateComponent test suit', () => {
             askForComponentColorAdd: jest.fn()
         }
 
-        const wrapper = mount(<PaintTemplateComponent {...props} />);
+        const wrapper = mount(<PaintTemplateDetailComponent {...props} />);
 
         // Empty informations
         expect(wrapper.find('.tile-title').length).toBe(0);
@@ -76,7 +76,7 @@ describe('PaintTemplateComponent test suit', () => {
             askForComponentColorAdd: jest.fn()
         }
 
-        const wrapper = mount(<PaintTemplateComponent {...props} />);
+        const wrapper = mount(<PaintTemplateDetailComponent {...props} />);
 
         // Show mode
         expect(wrapper.find('h5').text()).toMatch(props.currentComponent.label);
@@ -116,7 +116,7 @@ describe('PaintTemplateComponent test suit', () => {
             askForComponentColorAdd: jest.fn()
         }
 
-        const wrapper = mount(<PaintTemplateComponent {...props} />);
+        const wrapper = mount(<PaintTemplateDetailComponent {...props} />);
 
         // Add a color
         wrapper.find('#addColor').simulate('click');
