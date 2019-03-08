@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './paintTemplateListItem.scss';
 
 const PaintTemplateListItem = ({ currentTemplate, handleEdit, askForDelete, handleSelect }) => {
+    const primaryColors = currentTemplate.components ? currentTemplate.components.map(component => component.colors[0]) : [];
+    let primaryColorsIcon = [];
+    for (let i = 0; i < 4; i++) {
+        const color = primaryColors[i] ? primaryColors[i].color : '#FFF';
+        primaryColorsIcon.push(<div className="tile-icon-grid-box" style={{ backgroundColor: color }} key={i}>&nbsp;</div>);
+    }
     return (
         <div className="tile tile-centered">
-            <div className="tile-icon">
-                <div className="btn btn-primary">
-                    <i className="icon icon-photo centered"></i>
-                </div>
+            <div className="tile-icon tile-icon-grid-wrapper">
+                {primaryColorsIcon}
             </div>
             <div id="selectTemplate" className="tile-content" onClick={() => handleSelect(currentTemplate)}>
                 <div className="tile-title">{currentTemplate.label}</div>
